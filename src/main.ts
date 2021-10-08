@@ -1,6 +1,14 @@
-import { createApp } from "vue";
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
+import { createApp } from 'vue';
+import App from '@/layouts/App.vue';
+import initElement from '@/plugins/element';
+import initRouter from '@/plugins/router';
+import 'element-plus/dist/index.css';
+import '../public/css/normalize.css';
 
-createApp(App).use(store).use(router).mount("#app");
+const app = createApp(App);
+
+// 注册插件
+initElement(app);
+initRouter(app);
+
+app.mount('#app');
