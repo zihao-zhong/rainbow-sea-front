@@ -2,6 +2,7 @@
   "name": "rainbow-sea-front",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -30,7 +31,7 @@
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
     "chalk": "^4.1.2",
-    "compression-webpack-plugin": "^9.0.0",
+    "compression-webpack-plugin": "^6.0.5",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.0.0",
