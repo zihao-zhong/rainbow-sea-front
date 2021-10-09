@@ -1,9 +1,7 @@
 import { createApp } from 'vue';
-import App from '@/layouts/App.vue';
+import App from '@layouts/App.vue';
 import initElement from '@/plugins/element';
 import initRouter from '@/plugins/router';
-import 'element-plus/dist/index.css';
-import '../public/css/normalize.css';
 
 const app = createApp(App);
 

@@ -27,7 +27,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/variables.scss';
 .el-header {
   height: 60px;
   background-color: #fff;
