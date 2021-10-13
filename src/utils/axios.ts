@@ -1,23 +1,27 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { ElMessage } from 'element-plus';
 import { IAxiosRequestConfig, IAxioxResponse } from '@/types/common';
+import { ElMessage } from 'element-plus';
 
 const instance = axios.create({
   baseURL: '/api',
   timeout: 10000,
+  validateStatus: null,
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json;charset=UTF-8',
   },
 });
 
-instance.interceptors.request.use((config: AxiosRequestConfig) => {
-  // 自定义header，可添加项目token
-  const conf = config;
-  // debugger;
-  // config.token = 'token';
-  return conf;
-});
+instance.interceptors.request.use(
+  (config: AxiosRequestConfig) => {
+    // 自定义header，可添加项目token
+    const conf = config;
+    // debugger;
+    // config.token = 'token';
+    return conf;
+  },
+  (err) => Promise.reject(err),
+);
 
 instance.interceptors.response.use(
   (response: AxiosResponse) => {
@@ -39,21 +43,14 @@ instance.interceptors.response.use(
         break;
     }
   },
-  (err) => {
-    console.log(err);
-    ElMessage.error('网络请求异常，请稍后重试!');
+  (error) => {
+    return Promise.reject(error);
   },
 );
 
-export default async <T>(config: IAxiosRequestConfig): Promise<IAxioxResponse<T>> => {
-  return new Promise<IAxioxResponse<T>>((resolve, reject) => {
-    instance(config)
-      .then((response: AxiosResponse) => {
-        const res: IAxioxResponse<T> = response.data;
-        resolve(res);
-      })
-      .catch((error) => {
-        reject(error);
-      });
+export default async <T>(config: IAxiosRequestConfig): Promise<T> => {
+  return instance(config).then((response: AxiosResponse) => {
+    const data = response.data;
+    return data;
   });
 };
