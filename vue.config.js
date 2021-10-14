@@ -139,8 +139,8 @@ module.exports = {
       .set('@scss', resolve('src/assets/scss'))
       .set('@components', resolve('src/components'));
 
-    // 打包分析
-    if (IS_PROD) {
+    // 打包分析(本地打包才进行分析，服务器打包则不需要)
+    if (IS_PROD && process.env.VUE_APP_BUILD_PLACE === 'local') {
       config.plugin('webpack-report').use(BundleAnalyzerPlugin, [
         {
           analyzerMode: 'static',
