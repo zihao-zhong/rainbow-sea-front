@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-table :data="table.tableData" style="width: 100%">
+    <el-table :data="userList" style="width: 100%">
       <el-table-column prop="id" label="ID" width="100" />
       <el-table-column prop="username" label="用户名" width="120" />
       <el-table-column prop="phone" label="手机号码" width="150" />
@@ -10,7 +10,7 @@
       <el-table-column prop="updatedBy" label="修改人" />
       <el-table-column prop="createdAt" label="创建时间" width="200" />
       <el-table-column prop="updatedAt" label="修改时间" width="200" />
-      <el-table-column fixed="right" label="Operations" width="120">
+      <el-table-column fixed="right" label="操作" width="120">
         <template #default="{ row }">
           <el-button type="text" size="small" @click="handleClick(row)">修改</el-button>
         </template>
@@ -20,21 +20,25 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive } from 'vue';
+import { defineComponent, onMounted, reactive, toRefs } from 'vue';
 import { getUserList } from '@/api/app';
 import { User } from '@/types/user.interface';
 
 interface State {
-  tableData: User[];
+  userList: User[];
+  tableLoading: boolean;
 }
 
 export default defineComponent({
   setup() {
     const table = reactive<State>({
-      tableData: [],
+      userList: [],
+      tableLoading: false,
     });
     onMounted(async () => {
-      table.tableData = await getUserList();
+      table.tableLoading = true;
+      table.userList = await getUserList();
+      table.tableLoading = false;
     });
 
     const handleClick = (user: User) => {
@@ -42,7 +46,7 @@ export default defineComponent({
     };
 
     return {
-      table,
+      ...toRefs(table),
       handleClick,
     };
   },

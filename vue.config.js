@@ -54,9 +54,9 @@ module.exports = {
         prependData: `
           @import "/css/normalize.css";
           @import "./src/assets/scss/common.scss";
-          @import "./src/assets/scss/variables.scss";
           @import "./src/assets/scss/mixins.scss";
           @import "./src/assets/scss/function.scss";
+          @import "./src/assets/scss/variables.scss";
         `,
       },
     },
