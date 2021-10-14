@@ -5,8 +5,15 @@
   "license": "MIT",
   "scripts": {
     "dev": "vue-cli-service serve",
+    "pro": "NODE_ENV=production vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build-auto": "node ./build/index.js",
     "lint": "vue-cli-service lint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
   },
   "dependencies": {
     "axios": "^0.22.0",
@@ -35,7 +42,7 @@
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.0.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.14.1",
     "prettier": "^2.2.1",
     "sass-loader": "^8.0.2",
     "shelljs": "^0.8.4",
