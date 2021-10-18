@@ -45,8 +45,8 @@ module.exports = {
     },
   },
   css: {
-    // extract: IS_PROD,
-    // sourceMap: false,
+    extract: IS_PROD,
+    sourceMap: false,
     loaderOptions: {
       scss: {
         // 向全局sass样式传入共享的全局变量, $src可以配置图片cdn前缀
