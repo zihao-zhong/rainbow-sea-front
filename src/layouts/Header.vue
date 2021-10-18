@@ -2,11 +2,15 @@
   <el-header>
     <div class="rs-header rs-main">
       <nav class="rs-nav">
-        <router-link class="rs-nav-list" to="/">首页</router-link>
-        <router-link class="rs-nav-list" to="/database">数据库</router-link>
-        <router-link class="rs-nav-list" to="/game">游戏</router-link>
-        <router-link class="rs-nav-list" to="/word">文档</router-link>
-        <!-- <router-link class="rs-nav-list" to="/websocket">WebSocket</router-link> -->
+        <router-link
+          class="rs-nav-list"
+          :class="{ 'rs-active': $route.path.startsWith(item.path) }"
+          v-for="item in navList"
+          :key="item.path"
+          :to="item.path"
+        >
+          {{ item.text }}
+        </router-link>
       </nav>
       <div class="rs-user">
         <el-button size="medium" plain>登录</el-button>
@@ -18,10 +22,36 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 
+interface Nav {
+  path: string;
+  text: string;
+}
+
+const navList: Nav[] = [
+  {
+    path: '/app',
+    text: '首页',
+  },
+  {
+    path: '/database',
+    text: '数据库',
+  },
+  {
+    path: '/game',
+    text: '游戏',
+  },
+  {
+    path: '/word',
+    text: '文档',
+  },
+];
+
 export default defineComponent({
   name: 'Header',
   setup() {
-    return {};
+    return {
+      navList,
+    };
   },
 });
 </script>
@@ -47,9 +77,8 @@ export default defineComponent({
       &:not(:first-child) {
         margin-left: 30px;
       }
-      &:hover {
-        color: $rs-primary-blue;
-      }
+      @include common-hover;
+      @include common-active;
     }
   }
 }

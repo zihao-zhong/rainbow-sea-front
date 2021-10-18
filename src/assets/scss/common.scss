@@ -2,3 +2,25 @@
   width: 1200px;
   margin: 0 auto;
 }
+
+
+// 滚动条
+*::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+  border-radius: 5px;
+  background: #f0f0f0;
+}
+*::-webkit-scrollbar-button {
+  display: none;
+}
+*::-webkit-scrollbar-track-piece {
+  display: none;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+*::-webkit-scrollbar-corner {
+  display: none;
+}

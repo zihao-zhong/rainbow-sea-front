@@ -1,15 +1,19 @@
 const chalk = require('chalk');
 const shell = require('shelljs');
-// const inquirer = require('inquirer');
+const inquirer = require('inquirer');
 
 handleBuild();
 
-function handleBuild() {
+async function handleBuild() {
   try {
     shell.echo(chalk.green('拉取远程代码'));
     shell.exec('git pull');
     shell.echo(chalk.green('下载依赖包'));
     shell.exec('npm install');
+
+    // 创建tag版本
+    await handleCreateTag();
+
     shell.echo(chalk.green('开始打包'));
     shell.exec('npm run build');
 
@@ -24,4 +28,35 @@ function handleBuild() {
     console.error(error);
     shell.exit(1);
   }
+}
+
+/**
+ * 创建版本号
+ */
+async function handleCreateTag() {
+  const lastTag = shell.exec('git tag | tail -1', { silent: true }).stdout.replace(/\s+|\|\n|\*/g, '');
+
+  const answer = await inquirer.prompt([
+    {
+      name: 'tag',
+      type: 'input',
+      message: `请输入版本号，当前最新的版本号为: ${chalk.green(lastTag)}`,
+    },
+  ]);
+
+  if (!answer.tag) {
+    throw new Error('请输入版本号');
+  }
+
+  /**
+   * v1.0.0
+   * v1.0.1
+   */
+  if (!/^v[0-9]\.[0-9]\.[0-9]/.test(answer.tag)) {
+    throw new Error('版本号不符合规范');
+  }
+
+  shell.exec(`git tag ${answer.tag}`);
+  shell.exec(`git push origin ${answer.tag}`);
+  shell.exec(`git checkout ${answer.tag}`);
 }

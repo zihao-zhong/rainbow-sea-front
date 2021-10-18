@@ -18,8 +18,8 @@ module.exports = {
   rules: {
     '@typescript-eslint/no-var-requires': 0, // 允许 require 引入包
     'linebreak-style': 0, // 在window和mac的结尾的换行符不同，记录一下
-    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    // 'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
   },
   settings: {
     'vue/max-attributes-per-line': [

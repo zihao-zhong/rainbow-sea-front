@@ -1,0 +1,34 @@
+// 单行文字省略号
+@mixin word-ellipsis($width) {
+  width: $width;
+  overflow: hidden;
+  white-space: nowrap;
+  word-break: break-all;
+  text-overflow: ellipsis;
+}
+
+// 多行省略号, 默认超出两行展示省略号
+@mixin word-ellipsis-line($width, $line: 2) {
+  width: $width;
+  overflow: hidden;
+  line-clamp: $line;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+  text-overflow: -o-ellipsis-lastline;
+}
+
+// 公共的 hover 样式
+@mixin common-hover ($hoverColor: $rs-primary-blue) {
+  &:hover {
+    color: $hoverColor;
+  }
+}
+
+// 公共的文字选中样式
+@mixin common-active ($activeColor: $rs-primary-blue, $activeName: 'rs-active') {
+  &.#{$activeName} {
+    color: $activeColor !important;
+  }
+}
