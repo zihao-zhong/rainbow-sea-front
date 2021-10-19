@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-link type="primary">game</el-link>
+    <a-button type="primary">game</a-button>
   </div>
 </template>
 

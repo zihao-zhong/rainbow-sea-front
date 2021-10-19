@@ -1,29 +1,29 @@
 <template>
-  <el-container direction="vertical">
+  <a-layout>
     <Header />
-    <el-main>
-      <el-config-provider :locale="locale">
+    <a-layout-content>
+      <a-config-provider :locale="locale">
         <router-view />
-      </el-config-provider>
-    </el-main>
-  </el-container>
+      </a-config-provider>
+    </a-layout-content>
+  </a-layout>
 </template>
 
 <script lang="ts">
 import Header from './Header.vue';
 import { defineComponent } from 'vue';
-import { ElConfigProvider } from 'element-plus';
+import { ConfigProvider } from 'ant-design-vue';
 
-import zhCn from 'element-plus/lib/locale/lang/zh-cn';
+import zhCN from 'ant-design-vue/es/locale/zh_CN';
 
 export default defineComponent({
   components: {
     Header,
-    ElConfigProvider,
+    'a-config-provider': ConfigProvider,
   },
   setup() {
     return {
-      locale: zhCn,
+      locale: zhCN,
     };
   },
 });
