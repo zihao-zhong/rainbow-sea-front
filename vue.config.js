@@ -2,8 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const Components = require('unplugin-vue-components/webpack');
-const { ElementPlusResolver } = require('unplugin-vue-components/resolvers');
 
 const resolve = (dir) => path.join(__dirname, dir);
 const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV);
@@ -65,13 +63,6 @@ module.exports = {
     // webpack 插件集合
     const plugins = [];
 
-    // 按需引入 ElementPlus 组件
-    plugins.push(
-      Components({
-        resolvers: [ElementPlusResolver()],
-      }),
-    );
-
     if (IS_PROD) {
       // 使用 splitChunks 单独打包第三方模块
       config.optimization = {
@@ -95,9 +86,9 @@ module.exports = {
               enforce: true,
               reuseExistingChunk: true,
             },
-            elementUI: {
-              name: 'chunk-elementplus',
-              test: /[\\/]node_modules[\\/]element-plus[\\/]/,
+            antdUI: {
+              name: 'chunk-ant-design-vue',
+              test: /[\\/]node_modules[\\/]ant-design-vue[\\/]/,
               chunks: 'all',
               priority: 3,
               enforce: true,

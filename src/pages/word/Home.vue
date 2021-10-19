@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-link type="primary">word</el-link>
+    <a-button type="primary">word</a-button>
   </div>
 </template>
 

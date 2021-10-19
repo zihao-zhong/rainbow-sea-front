@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-link type="primary">database</el-link>
+    <a-button type="primary">database</a-button>
   </div>
 </template>
 

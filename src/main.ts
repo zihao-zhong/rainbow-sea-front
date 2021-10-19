@@ -1,14 +1,12 @@
 import { createApp } from 'vue';
 import App from '@layouts/App.vue';
-import initElement from '@/plugins/element';
+import initAntd from '@/plugins/antd';
 import initRouter from '@/plugins/router';
-
-import 'element-plus/dist/index.css';
 
 const app = createApp(App);
 
 // 注册插件
-initElement(app);
+initAntd(app);
 initRouter(app);
 
 app.mount('#app');

@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { IAxiosRequestConfig, IAxioxResponse } from '@/types/common';
-import { ElMessage } from 'element-plus';
+import { message } from 'ant-design-vue';
 
 const instance = axios.create({
   baseURL: '/api',
@@ -36,10 +36,10 @@ instance.interceptors.response.use(
         window.location.href = '/#/403';
         break;
       case 400: // 用户填写错误
-        ElMessage.warning(res.message);
+        message.warning(res.message);
         break;
       default:
-        ElMessage.error(res.message);
+        message.error(res.message);
         break;
     }
   },

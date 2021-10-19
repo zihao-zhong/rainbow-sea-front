@@ -1,5 +1,5 @@
 <template>
-  <el-header>
+  <a-layout-header theme="light">
     <div class="rs-header rs-main">
       <nav class="rs-nav">
         <router-link
@@ -13,10 +13,10 @@
         </router-link>
       </nav>
       <div class="rs-user">
-        <el-button size="medium" plain>登录</el-button>
+        <a-button>登录</a-button>
       </div>
     </div>
-  </el-header>
+  </a-layout-header>
 </template>
 
 <script lang="ts">
@@ -57,7 +57,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.el-header {
+.a-layout-header {
   height: 60px;
   background-color: #fff;
   border-bottom: 1px solid #f1f1f1;
