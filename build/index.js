@@ -16,8 +16,12 @@ async function handleBuild() {
 
     shell.echo(chalk.green('开始打包'));
     shell.exec('npm run build');
+    shell.echo(chalk.green('项目打包完成'));
+    // 下载依赖包时候，可能会造成 package-lock.json 的改动，导致无法切换分支
+    shell.exec('git checkout .');
+    shell.exec('git checkout master');
 
-    shell.echo(chalk.green('项目打包完成, 配置 Nginx'));
+    shell.echo(chalk.green('开始配置 Nginx'));
     shell.exec('rm -rf /usr/local/nginx/html/*');
     shell.exec('mv ./dist/* /usr/local/nginx/html');
     shell.exec('nginx -s reload');
