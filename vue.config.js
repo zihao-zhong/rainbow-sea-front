@@ -57,6 +57,14 @@ module.exports = {
           @import "./src/assets/scss/variables.scss";
         `,
       },
+      less: {
+        lessOptions: {
+          modifyVars: {
+            dark: true,
+          },
+          javascriptEnabled: true,
+        },
+      },
     },
   },
   configureWebpack: (config) => {

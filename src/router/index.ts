@@ -3,6 +3,7 @@ import app from './app';
 import database from './database';
 import game from './game';
 import word from './word';
+import system from './system';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -15,6 +16,7 @@ const routes: Array<RouteRecordRaw> = [
   database,
   game,
   word,
+  system,
 ];
 
 const router = createRouter({

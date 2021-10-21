@@ -44,6 +44,10 @@ const navList: Nav[] = [
     path: '/word',
     text: '文档',
   },
+  {
+    path: '/system',
+    text: '管理台',
+  },
 ];
 
 export default defineComponent({

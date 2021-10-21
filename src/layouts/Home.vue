@@ -28,3 +28,9 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.ant-layout-content {
+  background-color: #fff;
+}
+</style>

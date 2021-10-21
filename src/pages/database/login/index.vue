@@ -10,8 +10,11 @@
             <a-form-item label="端口号" name="port">
               <a-input v-model:value="loginForm.port"></a-input>
             </a-form-item>
-            <a-form-item label="用户名" name="username">
-              <a-input v-model:value="loginForm.username"></a-input>
+            <a-form-item label="数据库" name="database">
+              <a-input v-model:value="loginForm.database"></a-input>
+            </a-form-item>
+            <a-form-item label="用户名" name="user">
+              <a-input v-model:value="loginForm.user"></a-input>
             </a-form-item>
             <a-form-item label="密码" name="password">
               <a-input v-model:value="loginForm.password"></a-input>
@@ -21,7 +24,7 @@
             </a-form-item>
           </a-form>
         </a-tab-pane>
-        <a-tab-pane tab="列表登录" key="list">该功能暂不支持，请先用账号登录...</a-tab-pane>
+        <a-tab-pane tab="列表登录" key="list">该功能暂不支持，请先使用账号登录...</a-tab-pane>
       </a-tabs>
     </div>
   </div>
@@ -31,7 +34,7 @@
 import { defineComponent, ref, reactive, toRefs } from 'vue';
 
 const rules = {
-  name: {
+  host: {
     required: true,
     message: '请输入IP地址',
     trigger: 'blur',
@@ -41,14 +44,19 @@ const rules = {
     message: '请输入端口号',
     trigger: 'blur',
   },
-  username: {
+  database: {
+    required: true,
+    message: '请输入数据库',
+    trigger: 'blur',
+  },
+  user: {
     required: true,
     message: '请输入用户名',
     trigger: 'blur',
   },
   password: {
     required: true,
-    message: '请输入密码吗',
+    message: '请输入密码',
     trigger: 'blur',
   },
 };
@@ -63,7 +71,8 @@ export default defineComponent({
       loginForm: {
         host: '',
         port: '',
-        username: '',
+        database: '',
+        user: '',
         password: '',
       },
     });
