@@ -1,6 +1,7 @@
 <template>
   <div class="rs-app-home">
-    <a-table :dataSource="userList" :columns="columns" :loading="tableLoading" :pagination="false" />
+    <!-- <a-table :dataSource="userList" :columns="columns" :loading="tableLoading" :pagination="false" /> -->
+    <img src="../../assets/imgs/81.webp" alt="" />
   </div>
 </template>
 
@@ -81,6 +82,10 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .rs-app-home {
-  padding: 20px;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 </style>

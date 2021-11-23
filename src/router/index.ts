@@ -13,6 +13,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@layouts/App.vue'), // 懒加载组件
     children: app,
   },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@layouts/Login.vue'), // 懒加载组件
+  },
   database,
   game,
   word,

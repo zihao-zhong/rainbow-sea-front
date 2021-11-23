@@ -61,10 +61,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.a-layout-header {
+.ant-layout-header {
   height: 60px;
-  background-color: #fff;
-  border-bottom: 1px solid #f1f1f1;
+  background-color: $rs-primary-black;
 }
 .rs-header {
   display: flex;
