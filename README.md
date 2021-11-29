@@ -9,7 +9,7 @@
 - EditorConfig for Visual Studio Code
 
 ### 后端项目链接
-(rainbow-sea-server)[https://github.com/zihao-web/rainbow-sea-server]
+[rainbow-sea-server](https://github.com/zihao-web/rainbow-sea-server)
 
 ### 启动项目
 
