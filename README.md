@@ -1,6 +1,6 @@
 # 彩虹海🌈
 
-## vue3 + ts + vite + element-plus 构建
+## vue3 + vue-cli + ts + element-plus 构建
 
 ### 安装 vscode 插件
 
