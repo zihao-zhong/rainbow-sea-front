@@ -13,7 +13,7 @@
         </router-link>
       </nav>
       <div class="rs-user">
-        <a-button>登录</a-button>
+        <a-button type="link" @click="handleToLogin">登录/注册</a-button>
       </div>
     </div>
   </a-layout-header>
@@ -21,6 +21,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { useRouter } from 'vue-router';
 
 interface Nav {
   path: string;
@@ -53,8 +54,16 @@ const navList: Nav[] = [
 export default defineComponent({
   name: 'Header',
   setup() {
+    const router = useRouter();
+
+    // 跳转登录
+    const handleToLogin = () => {
+      router.push('/login');
+    };
+
     return {
       navList,
+      handleToLogin,
     };
   },
 });

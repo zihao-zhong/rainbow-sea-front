@@ -2,7 +2,7 @@
   <div class="rs-login">
     <div class="rs-login-container">
       <a-tabs v-model:activeKey="activeTab">
-        <a-tab-pane tab="登录" key="account">
+        <a-tab-pane tab="登录" key="login">
           <a-form :rules="rules" ref="formRef" :model="loginForm" class="rs-login-form" :label-col="{ span: 5 }">
             <a-form-item label="邮箱地址" name="email">
               <a-input v-model:value="loginForm.email"></a-input>
@@ -11,13 +11,13 @@
               <a-input v-model:value="loginForm.password" type="password"></a-input>
             </a-form-item>
             <a-form-item :wrapper-col="{ offset: 5 }">
-              <a-button @click="hadleeSubmit()">登录</a-button>
+              <a-button @click="handleLogin()">登录</a-button>
             </a-form-item>
           </a-form>
         </a-tab-pane>
-        <a-tab-pane tab="注册" key="list">
+        <a-tab-pane tab="注册" key="register">
           <a-form :rules="rules" ref="formRef" :model="registerForm" class="rs-register-form" :label-col="{ span: 5 }">
-            <a-form-item label="邮箱地址" name="user">
+            <a-form-item label="邮箱地址" name="email">
               <a-input v-model:value="registerForm.email"></a-input>
             </a-form-item>
             <a-form-item label="密码" name="password">
@@ -27,14 +27,17 @@
               <a-input v-model:value="registerForm.confirmPassword"></a-input>
             </a-form-item>
             <a-form-item label="验证码" name="code">
-              <a-input-search v-model:value="registerForm.code">
-                <template #enterButton>
-                  <a-button type="primary">发送验证码</a-button>
-                </template>
-              </a-input-search>
+              <a-row :gutter="5">
+                <a-col :span="15">
+                  <a-input v-model:value="registerForm.code"></a-input>
+                </a-col>
+                <a-col :span="9">
+                  <a-button type="primary" @click="handleSendCode">发送验证码</a-button>
+                </a-col>
+              </a-row>
             </a-form-item>
             <a-form-item :wrapper-col="{ offset: 5 }">
-              <a-button @click="hadleeSubmit()">登录</a-button>
+              <a-button type="primary" @click="handleRegister">注册</a-button>
             </a-form-item>
           </a-form>
         </a-tab-pane>
@@ -44,8 +47,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, reactive, toRefs } from 'vue';
+import { defineComponent, ref, reactive } from 'vue';
 import { Rules } from '@/types/rules';
+import { message } from 'ant-design-vue';
+import { sendRegisterCode } from '@/api/user';
 
 const rules: Rules = {
   email: {
@@ -69,11 +74,11 @@ const rules: Rules = {
       trigger: 'blur',
     },
     {
-      validator: (rule, value, callback) => {
+      validator: (rule, value) => {
         if (value !== 'asd') {
-          callback('两次密码输入不一致');
+          Promise.reject('两次密码输入不一致');
         }
-        callback();
+        Promise.resolve();
       },
     },
   ],
@@ -84,11 +89,11 @@ const rules: Rules = {
       trigger: 'blur',
     },
     {
-      validator: (rule, value, callback) => {
+      validator: (rule, value) => {
         if (value.length !== 6) {
-          callback('验证码只能输入6位数');
+          Promise.reject('验证码只能输入6位数');
         }
-        callback();
+        Promise.resolve();
       },
     },
   ],
@@ -97,38 +102,59 @@ const rules: Rules = {
 export default defineComponent({
   setup() {
     const formRef = ref();
-    const activeTab = ref<string>('account');
+    const activeTab = ref<string>('register');
 
-    const form = reactive({
-      loginForm: {
-        email: '',
-        password: '',
-      },
-      registerForm: {
-        email: '',
-        password: '',
-        confirmPassword: '',
-        code: '',
-      },
+    /** 登录模块 */
+    const loginForm = reactive({
+      email: '',
+      password: '',
     });
 
-    const hadleeSubmit = () => {
+    const handleLogin = () => {
       formRef.value
         .validate()
         .then(() => {
-          console.log('values', form);
+          console.log('values', loginForm);
         })
         .catch(() => {
           console.log('error');
         });
     };
 
+    /** 注册模块 */
+    const registerForm = reactive({
+      email: '',
+      password: '',
+      confirmPassword: '',
+      code: '',
+    });
+
+    const handleRegister = () => {
+      formRef.value
+        .validate()
+        .then(() => {
+          console.log('values', loginForm);
+        })
+        .catch(() => {
+          console.log('error');
+        });
+    };
+
+    const handleSendCode = async () => {
+      await formRef.value.validateFields('email');
+      const res = await sendRegisterCode(registerForm.email);
+      message.success(res, 5);
+    };
+
     return {
       rules,
       formRef,
       activeTab,
-      hadleeSubmit,
-      ...toRefs(form),
+      loginForm,
+      handleLogin,
+      registerForm,
+      handleRegister,
+      handleSendCode,
     };
   },
 });
@@ -140,7 +166,6 @@ export default defineComponent({
   height: 100vh;
   background: url('../assets/imgs/81.webp') no-repeat;
   background-size: cover;
-
   .rs-login-container {
     position: fixed;
     left: 50%;
