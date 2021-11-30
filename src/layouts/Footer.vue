@@ -1,13 +1,9 @@
 <template>
   <a-layout-footer>
     <div class="rs-footer rs-main">
-      <a
-        class="rs-footer-link"
-        target="_blank"
-        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44030602006235"
-      >
+      <a class="rs-footer-link" target="_blank" href="https://beian.miit.gov.cn/">
         <img src="../assets/imgs/records.png" />
-        <span>粤公网安备 44030602006235号 粤ICP备2021131263号-1</span>
+        <span>粤ICP备2021131263号-1</span>
       </a>
     </div>
   </a-layout-footer>
