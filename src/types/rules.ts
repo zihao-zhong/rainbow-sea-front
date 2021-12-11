@@ -16,3 +16,5 @@ export interface IRule extends RuleItem {
 export interface Rules {
   [key: string]: IRule | IRule[];
 }
+
+export * from 'async-validator';

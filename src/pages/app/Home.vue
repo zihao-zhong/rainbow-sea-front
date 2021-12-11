@@ -8,7 +8,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive, toRefs } from 'vue';
 import { getUserList } from '@/api/app';
-import { User } from '@/types/user.interface';
+import { User } from '@/types/api/user.interface';
 
 interface State {
   userList: User[];
