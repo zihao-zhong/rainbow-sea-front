@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { IAxiosRequestConfig, IAxioxResponse } from '@/types/common';
 import { message } from 'ant-design-vue';
 
@@ -13,11 +13,8 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use(
-  (config: AxiosRequestConfig) => {
-    // 自定义header，可添加项目token
+  (config: IAxiosRequestConfig) => {
     const conf = config;
-    // debugger;
-    // config.token = 'token';
     return conf;
   },
   (err) => Promise.reject(err),
