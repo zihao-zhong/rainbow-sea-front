@@ -68,3 +68,12 @@ npm run build-auto
 ├── tsconfig.json              // ts 配置文件
 └── vue.config.ts              // vue-cli 配置文件
 ```
+
+### 增量构建
+
+```
+https://segmentfault.com/a/1190000023768414
+https://www.zhihu.com/question/319667644
+
+
+```

@@ -11,7 +11,7 @@
               <a-input v-model:value="loginForm.password" type="password"></a-input>
             </a-form-item>
             <a-form-item :wrapper-col="{ offset: 5 }">
-              <a-button type="primary" @click="handleLogin()">登录</a-button>
+              <a-button :loading="loginLoading" type="primary" @click="handleLogin()">登录</a-button>
             </a-form-item>
           </a-form>
         </a-tab-pane>
@@ -45,7 +45,7 @@
               </a-row>
             </a-form-item>
             <a-form-item :wrapper-col="{ offset: 5 }">
-              <a-button type="primary" @click="handleRegister">注册</a-button>
+              <a-button type="primary" :loading="registerLoading" @click="handleRegister">注册</a-button>
             </a-form-item>
           </a-form>
         </a-tab-pane>
@@ -68,6 +68,7 @@ export default defineComponent({
     const activeTab = ref<string>('login');
 
     /** 登录模块 */
+    let loginLoading = ref(false);
     const loginFormRef = ref();
     const loginForm = reactive({
       email: '',
@@ -77,11 +78,12 @@ export default defineComponent({
     const handleLogin = async () => {
       await loginFormRef.value.validate();
       const password = CryptoJS.AES.encrypt(loginForm.password, process.env.VUE_APP_SECRET_KEY).toString();
+      loginLoading.value = true;
       const data = await login({
         password,
         email: loginForm.email,
       });
-      console.log(data);
+      loginLoading.value = false;
       Cookies.set('token', data.token);
       // 用户信息存储到 vuex
 
@@ -92,6 +94,7 @@ export default defineComponent({
     /** 注册模块 */
     let timerNum = ref<number>(30);
     let btnLoading = ref(false);
+    let registerLoading = ref(false);
     const registerFormRef = ref();
     const registerForm = reactive({
       email: '',
@@ -103,11 +106,13 @@ export default defineComponent({
     const handleRegister = async () => {
       await registerFormRef.value.validate();
       const password = CryptoJS.AES.encrypt(registerForm.password, process.env.VUE_APP_SECRET_KEY).toString();
+      registerLoading.value = true;
       await register({
         password,
         code: registerForm.code,
         email: registerForm.email,
       });
+      registerLoading.value = false;
       message.success('注册成功，请登录');
       activeTab.value = 'login';
     };
@@ -188,8 +193,10 @@ export default defineComponent({
       loginForm,
       btnLoading,
       handleLogin,
+      loginLoading,
       registerForm,
       loginFormRef,
+      registerLoading,
       registerFormRef,
       handleRegister,
       handleSendCode,
