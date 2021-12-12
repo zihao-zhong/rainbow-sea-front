@@ -1,7 +1,7 @@
 import { App } from 'vue';
-import { message, Button, Layout, Table, Form, Tabs, Input, Menu, Row, Col } from 'ant-design-vue';
+import { message, Button, Layout, Table, Form, Tabs, Input, Menu, Row, Col, Avatar } from 'ant-design-vue';
 
-const components = [Button, Layout, Table, Form, Tabs, Input, Menu, Row, Col];
+const components = [Button, Layout, Table, Form, Tabs, Input, Menu, Row, Col, Avatar];
 
 export default function initAntd(app: App): void {
   // 按需注册 antd 的组件

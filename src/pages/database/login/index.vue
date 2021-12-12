@@ -100,20 +100,20 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-$img: 'https://static.pexels.com/photos/373934/pexels-photo-373934.jpeg';
-
 .rs-db-login {
   width: 100%;
   height: calc(100vh - 60px);
+  padding-top: 100px;
   background: url('../../../assets/imgs/362.jpg') center center;
   .rs-db-login-container {
-    position: fixed;
-    top: 160px;
-    left: 100px;
+    // position: fixed;
+    // top: 160px;
+    // left: 100px;
     width: 400px;
     height: 430px;
     padding: 20px;
     border-radius: 4px;
+    margin-left: 100px;
     background-color: #fff;
     .rs-login-form {
       padding-top: 20px;

@@ -13,15 +13,20 @@
         </router-link>
       </nav>
       <div class="rs-user">
-        <a-button type="link" @click="handleToLogin">登录/注册</a-button>
+        <a-avatar v-if="hasToken">
+          <template #icon><UserOutlined /></template>
+        </a-avatar>
+        <a-button v-else type="link" @click="handleToLogin">登录/注册</a-button>
       </div>
     </div>
   </a-layout-header>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, computed } from 'vue';
 import { useRouter } from 'vue-router';
+import { UserOutlined } from '@ant-design/icons-vue';
+import Cookies from 'js-cookie';
 
 interface Nav {
   path: string;
@@ -37,22 +42,25 @@ const navList: Nav[] = [
     path: '/database',
     text: '数据库',
   },
-  {
-    path: '/game',
-    text: '游戏',
-  },
-  {
-    path: '/word',
-    text: '文档',
-  },
-  {
-    path: '/system',
-    text: '管理台',
-  },
+  // {
+  //   path: '/game',
+  //   text: '游戏',
+  // },
+  // {
+  //   path: '/word',
+  //   text: '文档',
+  // },
+  // {
+  //   path: '/system',
+  //   text: '管理台',
+  // },
 ];
 
 export default defineComponent({
   name: 'Header',
+  components: {
+    UserOutlined,
+  },
   setup() {
     const router = useRouter();
 
@@ -61,7 +69,13 @@ export default defineComponent({
       router.push('/login');
     };
 
+    // 判断是否登录
+    const hasToken = computed(() => {
+      return !!Cookies.get('token');
+    });
+
     return {
+      hasToken,
       navList,
       handleToLogin,
     };
