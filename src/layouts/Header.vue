@@ -42,6 +42,10 @@ const navList: Nav[] = [
     path: '/database',
     text: '数据库',
   },
+  {
+    path: '/worker',
+    text: 'Web Worker',
+  },
   // {
   //   path: '/game',
   //   text: '游戏',

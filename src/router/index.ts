@@ -4,6 +4,7 @@ import database from './database';
 import game from './game';
 import word from './word';
 import system from './system';
+import worker from './worker';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -22,6 +23,7 @@ const routes: Array<RouteRecordRaw> = [
   game,
   word,
   system,
+  worker,
 ];
 
 const router = createRouter({
