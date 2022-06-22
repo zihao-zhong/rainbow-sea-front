@@ -8,7 +8,9 @@
     "pro": "NODE_ENV=production vue-cli-service serve",
     "build": "vue-cli-service build",
     "build-auto": "node ./build/index.js",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "static-server-dev": "cross-env NODE_ENV=development node ./server/index.js",
+    "static-server-prod": "cross-env NODE_ENV=production node ./server/index.js"
   },
   "husky": {
     "hooks": {
@@ -45,10 +47,15 @@
     "babel-plugin-import": "^1.13.3",
     "chalk": "^4.1.2",
     "compression-webpack-plugin": "^6.0.5",
+    "cross-env": "^7.0.3",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.0.0",
     "inquirer": "^8.2.0",
+    "koa": "^2.13.4",
+    "koa-mount": "^4.0.0",
+    "koa-proxies": "^0.12.2",
+    "koa-static": "^5.0.0",
     "node-sass": "^4.14.1",
     "prettier": "^2.2.1",
     "sass-loader": "^8.0.2",
