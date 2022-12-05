@@ -7,7 +7,8 @@
     "dev": "vue-cli-service serve",
     "pro": "NODE_ENV=production vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build-auto": "node ./build/index.js",
+    "build-auto": "node ./build/build-nginx.js",
+    "build:docker": "node ./build/build-docker.js",
     "lint": "vue-cli-service lint",
     "static-server-dev": "cross-env NODE_ENV=development node ./server/index.js",
     "static-server-prod": "cross-env NODE_ENV=production node ./server/index.js"
