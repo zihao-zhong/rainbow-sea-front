@@ -10,6 +10,7 @@ async function handleBuild() {
 
   try {
     shell.echo(chalk.green('拉取远程代码'));
+    shell.exec('git checkout master');
     shell.exec('git pull');
     shell.echo(chalk.green('下载依赖包'));
     shell.exec('npm install');
