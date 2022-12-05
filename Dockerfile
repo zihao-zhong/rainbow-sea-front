@@ -18,11 +18,11 @@ RUN npm run build
 # 部署阶段
 FROM nginx:alpine
 
-MAINTAINER zihzhong
+LABEL key="zihzhong"
 
 COPY --from=builder /app/build /usr/share/nginx/html/
 
-COPY ./client.nginx.conf /etc/nginx/conf.d/client.nginx.conf
+COPY ./nginx.conf /etc/nginx/conf.d/client.nginx.conf
 
 EXPOSE 80 80
 
