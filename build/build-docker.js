@@ -16,7 +16,7 @@ async function handleBuild() {
     // 创建tag版本
     const newTag = await handleCreateTag();
 
-    shell.echo(chalk.green(`旧TAG: ${oldTag} 新TAG: ${newTag}`));
+    shell.echo(chalk.green(`旧TAG: ${oldTag} 新TAG: v${newTag}`));
 
     // docker 构建
     shell.echo(chalk.green('Docker 开始打包构建项目...'));
