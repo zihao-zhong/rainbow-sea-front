@@ -5,7 +5,8 @@ const inquirer = require('inquirer');
 handleBuild();
 
 async function handleBuild() {
-  const oldTag = handleGetLastTag();
+  const lastTag = handleGetLastTag();
+  const oldTag = lastTag.replace(/v/, '');
 
   try {
     shell.echo(chalk.green('拉取远程代码'));
