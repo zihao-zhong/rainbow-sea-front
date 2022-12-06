@@ -20,7 +20,7 @@ FROM nginx:alpine
 
 LABEL key="zihzhong"
 
-COPY --from=builder /app/build /usr/share/nginx/html/
+COPY --from=builder /app/dist /usr/share/nginx/html/
 
 COPY ./nginx.conf /etc/nginx/conf.d/client.nginx.conf
 
