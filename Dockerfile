@@ -7,8 +7,6 @@ FROM node:14.14.0 as builder
 # 定义环境变量
 ENV NODE_ENV=production
 
-ARG registry=https://registry.npm.taobao.org
-
 # 定义容器内部的工作目录位置
 WORKDIR /app
 
