@@ -12,8 +12,6 @@ async function handleBuild() {
     shell.echo(chalk.green('拉取远程代码'));
     shell.exec('git checkout master');
     shell.exec('git pull');
-    shell.echo(chalk.green('下载依赖包'));
-    shell.exec('npm install');
 
     // 创建tag版本
     const newTag = await handleCreateTag();
@@ -28,6 +26,8 @@ async function handleBuild() {
     shell.echo(chalk.green('停止旧容器，用新镜像重新跑一个容器'));
     shell.exec(`docker stop rainbow_sea_front_${oldTag}`);
     shell.exec(`docker run --name rainbow_sea_front_${newTag} -p 80:80 -d rainbow_sea_front:${newTag}`);
+
+    shell.echo(chalk.green('项目部署成功，访问地址: http://116.205.186.172'));
     shell.exit();
   } catch (error) {
     shell.echo(chalk.red('构建过程发生错误，重新启动旧容器'));
