@@ -4,9 +4,6 @@
 # 构建阶段
 FROM node:14.14.0 as builder
 
-# 定义环境变量
-ENV NODE_ENV=production
-
 # 定义容器内部的工作目录位置
 WORKDIR /app
 
@@ -19,6 +16,9 @@ RUN npm install
 
 # 把当前项目下所有文件都复制到容器内部的 /app 目录下
 COPY . .
+
+# 定义环境变量
+ENV NODE_ENV=production
 
 # 打包构建项目
 RUN npm run build
